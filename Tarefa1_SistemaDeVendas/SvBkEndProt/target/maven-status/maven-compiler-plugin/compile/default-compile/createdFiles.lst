@@ -1,5 +1,5 @@
-com/bcopstein/Negocio/servicos/VendaService.class
 com/bcopstein/Negocio/servicos/IRestricaoHorarioVenda.class
+com/bcopstein/Negocio/servicos/VendaService.class
 com/bcopstein/Adaptadores/configuradores/ConfiguradorImposto.class
 com/bcopstein/Negocio/servicos/ProdutoService.class
 com/bcopstein/Adaptadores/repositorios/VendaRepository.class
@@ -8,8 +8,8 @@ com/bcopstein/Aplicacao/casosDeUso/ConsultaVendasUC.class
 com/bcopstein/Negocio/repositorios/IProdutoRepository.class
 com/bcopstein/Negocio/repositorios/IVendaRepository.class
 com/bcopstein/Negocio/entidades/ItemCarrinho.class
-com/bcopstein/Aplicacao/casosDeUso/ConsultaProdutosUC.class
 com/bcopstein/Negocio/servicos/ICalculoFrete.class
+com/bcopstein/Aplicacao/casosDeUso/ConsultaProdutosUC.class
 com/bcopstein/Aplicacao/servicos/ImpostoDois.class
 com/bcopstein/Aplicacao/casosDeUso/VerificaEstoqueProdutoUC.class
 com/bcopstein/SvBkPrototipo.class
