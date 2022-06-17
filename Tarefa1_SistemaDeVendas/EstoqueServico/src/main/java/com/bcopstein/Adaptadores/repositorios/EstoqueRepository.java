@@ -16,20 +16,14 @@ public class EstoqueRepository implements IEstoqueRepository {
     this.estoqueRepository = estoqueRepository;
   }
 
-  // @Override
-  // public ItemEstoque getProduto(int codigo) {
-  //   return estoqueRepository.findByProdutoCodigo(codigo);
-  // }
+  @Override
+  public ItemEstoque getProduto(int codigo) {
+    return estoqueRepository.findByProdutoCodigo(codigo);
+  }
 
   @Override
   public void atualizaProduto(ItemEstoque itemEstoque) {
     estoqueRepository.save(itemEstoque);
   }
-
-  // @Override
-  // public ItemEstoque getProduto(int codigo) {
-  //   // TODO Auto-generated method stub
-  //   return null;
-  // }
 
 }

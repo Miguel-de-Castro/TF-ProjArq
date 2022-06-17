@@ -14,14 +14,14 @@ public class ItemEstoque {
   @Column(name = "cod_estoque")
   private Integer codEstoque;
 
-  // @OneToOne(cascade = CascadeType.ALL)
-  // @JoinColumn(name = "cod_produto")
-  // private Produto produto;
+  @OneToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "cod_produto")
+  private Produto produto;
   private int quantidade;
 
-  public ItemEstoque(Integer codEstoque, int quantidade){//Produto produto, int quantidade) {
+  public ItemEstoque(Integer codEstoque, Produto produto, int quantidade) {
     this.codEstoque = codEstoque;
-    // this.produto = produto;
+    this.produto = produto;
     this.quantidade = quantidade;
   }
 
@@ -36,13 +36,13 @@ public class ItemEstoque {
     this.codEstoque = codEstoque;
   }
 
-  // public Produto getProduto() {
-  //   return produto;
-  // }
+  public Produto getProduto() {
+    return produto;
+  }
 
-  // public void setProduto(Produto produto) {
-  //   this.produto = produto;
-  // }
+  public void setProduto(Produto produto) {
+    this.produto = produto;
+  }
 
   public int getQuantidade() {
     return quantidade;

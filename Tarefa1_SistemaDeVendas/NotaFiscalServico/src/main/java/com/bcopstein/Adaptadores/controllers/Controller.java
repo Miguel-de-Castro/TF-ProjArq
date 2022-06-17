@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/vendas")
+@RequestMapping("/notafiscal")
 public class Controller {
   private VerificaEstoqueProdutoUC verificaEstoqueProduto;
   private CadastraVendaUC cadastraVenda;
