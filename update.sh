@@ -20,9 +20,9 @@ docker build --rm -t nameserver:latest .
 cd ../..
 
 # PORT 8100
-# cd Tarefa1_SistemaDeVendas/NotaFiscalServico
+# cd Tarefa1_SistemaDeVendas/VendaServico
 # mvn clean package
-# docker build --rm -t nota:latest .
+# docker build --rm -t venda:latest .
 
 # cd ../..
 

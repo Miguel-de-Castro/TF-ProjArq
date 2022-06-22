@@ -24,14 +24,24 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/vendas")
 public class Controller {
+  @Autowired
   private VerificaEstoqueProdutoUC verificaEstoqueProduto;
+  
+  @Autowired
   private CadastraVendaUC cadastraVenda;
+  
+  @Autowired
   private ConsultaVendaUC consultaVenda;
+  
+  @Autowired
   private ConsultaVendasUC consultaVendas;
-  private ConsultaProdutosUC consultaProdutos;
-  private CadastraProdutos cadastraProdutos;
 
   @Autowired
+  private ConsultaProdutosUC consultaProdutos;
+  
+  @Autowired
+  private CadastraProdutos cadastraProdutos;
+  
   public Controller(VerificaEstoqueProdutoUC verificaEstoqueProdutoUC, CadastraVendaUC cadastraVenda,
       ConsultaVendaUC consultaVenda, ConsultaVendasUC consultaVendas, ConsultaProdutosUC consultaProdutos, CadastraProdutos cadastraProdutos) {
     this.verificaEstoqueProduto = verificaEstoqueProdutoUC;

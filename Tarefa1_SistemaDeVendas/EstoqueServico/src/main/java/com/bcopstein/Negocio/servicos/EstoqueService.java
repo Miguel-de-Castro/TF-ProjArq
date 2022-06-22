@@ -19,8 +19,8 @@ public class EstoqueService {
   public boolean podeVender(int codProduto, int quantidade) {
 
     boolean disponivel = false;
-    // ItemEstoque produtoEncontrado = estoqueRepository.getProduto(codProduto);
-    // disponivel = produtoEncontrado.getQuantidade() >= quantidade;
+    ItemEstoque produtoEncontrado = estoqueRepository.getProduto(codProduto);
+    disponivel = produtoEncontrado.getQuantidade() >= quantidade;
 
     return disponivel;
   }
@@ -29,7 +29,7 @@ public class EstoqueService {
     estoqueRepository.atualizaProduto(itemEstoque);
   }
 
-  // public ItemEstoque getProduto(int codProduto) {
-  //   return estoqueRepository.getProduto(codProduto);
-  // }
+  public ItemEstoque getProduto(int codProduto) {
+    return estoqueRepository.getProduto(codProduto);
+  }
 }

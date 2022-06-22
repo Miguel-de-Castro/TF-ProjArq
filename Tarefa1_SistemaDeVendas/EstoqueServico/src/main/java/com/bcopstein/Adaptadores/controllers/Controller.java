@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,11 +18,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/estoque")
 public class Controller {
-  private VerificaEstoqueProdutoUC verificaEstoqueProduto;
-  private ConsultaProdutosUC consultaProdutos;
-  private CadastraProdutos cadastraProdutos;
 
   @Autowired
+  private VerificaEstoqueProdutoUC verificaEstoqueProduto;
+
+  @Autowired
+  private ConsultaProdutosUC consultaProdutos;
+
+  @Autowired
+  private CadastraProdutos cadastraProdutos;
+
   public Controller(VerificaEstoqueProdutoUC verificaEstoqueProdutoUC, 
         ConsultaProdutosUC consultaProdutos, CadastraProdutos cadastraProdutos) {
     this.verificaEstoqueProduto = verificaEstoqueProdutoUC;
@@ -48,4 +52,6 @@ public class Controller {
   public void criarProdutos() {
     cadastraProdutos.executar();
   }
+
+  @PostMapping("/")
 }
