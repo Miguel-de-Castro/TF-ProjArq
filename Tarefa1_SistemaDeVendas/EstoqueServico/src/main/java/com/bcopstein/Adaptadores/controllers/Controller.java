@@ -29,10 +29,13 @@ public class Controller {
   private CadastraProdutos cadastraProdutos;
 
   public Controller(VerificaEstoqueProdutoUC verificaEstoqueProdutoUC, 
-        ConsultaProdutosUC consultaProdutos, CadastraProdutos cadastraProdutos) {
+        ConsultaProdutosUC consultaProdutos, CadastraProdutos cadastraProdutos,
+        BaixaEstoqueUC baixaEstoque, DesfazerBaixaEstoqueUC desfazerBaixaEstoque) {
     this.verificaEstoqueProduto = verificaEstoqueProdutoUC;
     this.consultaProdutos = consultaProdutos;
     this.cadastraProdutos = cadastraProdutos;
+    this.baixaEstoque = baixaEstoque;
+    this.desfazerBaixaEstoque = desfazerBaixaEstoque
   }
 
   @GetMapping("/produtos")
@@ -53,5 +56,16 @@ public class Controller {
     cadastraProdutos.executar();
   }
 
-  @PostMapping("/")
+  @PostMapping("/baixaEstoque")
+  @CrossOrigin(origins = "*")
+  public void baixaEstoque(@RequestParam final Integer codProd, @RequestParam final Integer qtdade) {
+    baixaEstoque.executar();
+  }
+
+
+  @PostMapping("/desfazerBaixaEstoque")
+  @CrossOrigin(origins = "*")
+  public void desfazerBaixaEstoque(@RequestParam final Integer codProd, @RequestParam final Integer qtdade) {
+    desfazerBaixaEstoque.executar();
+  }
 }
