@@ -3,8 +3,10 @@ package com.bcopstein.Adaptadores.controllers;
 import java.util.List;
 
 import com.bcopstein.Aplicacao.casosDeUso.CadastraProdutos;
+import com.bcopstein.Aplicacao.casosDeUso.ConsultaProdutoUC;
 import com.bcopstein.Aplicacao.casosDeUso.ConsultaProdutosUC;
 import com.bcopstein.Aplicacao.casosDeUso.VerificaEstoqueProdutoUC;
+import com.bcopstein.Negocio.entidades.ItemEstoque;
 import com.bcopstein.Negocio.entidades.Produto;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class Controller {
 
   @Autowired
+  private ConsultaProdutoUC consultaProduto;
+  
+  @Autowired
   private VerificaEstoqueProdutoUC verificaEstoqueProduto;
 
   @Autowired
@@ -29,16 +34,23 @@ public class Controller {
   private CadastraProdutos cadastraProdutos;
 
   public Controller(VerificaEstoqueProdutoUC verificaEstoqueProdutoUC, 
-        ConsultaProdutosUC consultaProdutos, CadastraProdutos cadastraProdutos) {
+        ConsultaProdutosUC consultaProdutos, CadastraProdutos cadastraProdutos, ConsultaProdutoUC consultaProdutoUC) {
     this.verificaEstoqueProduto = verificaEstoqueProdutoUC;
     this.consultaProdutos = consultaProdutos;
     this.cadastraProdutos = cadastraProdutos;
+    this.consultaProduto = consultaProdutoUC;
   }
 
   @GetMapping("/produtos")
   @CrossOrigin(origins = "*")
   public List<Produto> listaProdutos() {
     return consultaProdutos.executar();
+  }
+
+  @GetMapping("/produto")
+  @CrossOrigin(origins = "*")
+  public ItemEstoque getProduto(@RequestParam final Integer codProd) {
+    return consultaProduto.executar(codProd);
   }
 
   @GetMapping("/autorizacao")
@@ -53,5 +65,4 @@ public class Controller {
     cadastraProdutos.executar();
   }
 
-  @PostMapping("/")
 }
