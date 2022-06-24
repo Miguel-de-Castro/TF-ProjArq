@@ -16,12 +16,19 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class VendaService {
-  private IVendaRepository vendaRepository;
-  private ICalculoImposto calculoImposto;
-  private EstoqueService servicoEstoque;
-  private ICalculoFrete calculoFrete;
 
   @Autowired
+  private IVendaRepository vendaRepository;
+
+  @Autowired
+  private ICalculoImposto calculoImposto;
+
+  @Autowired
+  private EstoqueService servicoEstoque;
+
+  @Autowired
+  private ICalculoFrete calculoFrete;
+
   public VendaService(IVendaRepository vendaRepository, ICalculoImposto calculoImposto, EstoqueService servicoEstoque, ICalculoFrete calculoFrete) {
     this.vendaRepository = vendaRepository;
     this.calculoImposto = calculoImposto;
@@ -40,6 +47,7 @@ public class VendaService {
     List<ItemCarrinho> produtos = novaVenda.getItensCarrinho();
 
     for (ItemCarrinho produto : produtos) {
+      // TODO: podevender() ele vai ser chamado la do estoque
       boolean podeVender = servicoEstoque.podeVender(produto.getCodProduto(), produto.getQuantidade());
 
       if (!podeVender) {
@@ -48,12 +56,13 @@ public class VendaService {
     }
 
     for (ItemCarrinho produto : produtos) {
+      // TODO: ItemEstoque ele vai ser chamado la do estoque
       ItemEstoque itemEstoque = servicoEstoque.getProduto(produto.getCodProduto());
       itemEstoque.setQuantidade(itemEstoque.getQuantidade() - produto.getQuantidade());
       servicoEstoque.atualizaProduto(itemEstoque);
     }
 
-    this.vendaRepository.cadastra(novaVenda);
+    this.vendaRepository.cadastra(novaVenda); // TODO: alterar aqui chama o endpoint para adicionar no notafiscalservico
 
     return 0;
   }
@@ -102,6 +111,6 @@ public class VendaService {
   }
 
   public List<Venda> todos() {
-    return vendaRepository.todos();
+    return vendaRepository.todos(); // TODO: mudar aqui para ser o historico
   }
 }

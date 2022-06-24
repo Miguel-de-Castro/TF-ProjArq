@@ -2,9 +2,11 @@ package com.bcopstein.Adaptadores.controllers;
 
 import java.util.List;
 
+import com.bcopstein.Aplicacao.casosDeUso.BaixaEstoqueUC;
 import com.bcopstein.Aplicacao.casosDeUso.CadastraProdutos;
 import com.bcopstein.Aplicacao.casosDeUso.ConsultaProdutoUC;
 import com.bcopstein.Aplicacao.casosDeUso.ConsultaProdutosUC;
+import com.bcopstein.Aplicacao.casosDeUso.DesfazerBaixaEstoqueUC;
 import com.bcopstein.Aplicacao.casosDeUso.VerificaEstoqueProdutoUC;
 import com.bcopstein.Negocio.entidades.ItemEstoque;
 import com.bcopstein.Negocio.entidades.Produto;
@@ -43,7 +45,7 @@ public class Controller {
     this.consultaProdutos = consultaProdutos;
     this.cadastraProdutos = cadastraProdutos;
     this.baixaEstoque = baixaEstoque;
-    this.desfazerBaixaEstoque = desfazerBaixaEstoque
+    this.desfazerBaixaEstoque = desfazerBaixaEstoque;
   }
 
   @GetMapping("/produtos")
@@ -67,13 +69,13 @@ public class Controller {
   @PostMapping("/baixaEstoque")
   @CrossOrigin(origins = "*")
   public void baixaEstoque(@RequestParam final Integer codProd, @RequestParam final Integer qtdade) {
-    baixaEstoque.executar();
+    baixaEstoque.executar(codProd, qtdade);
   }
 
 
   @PostMapping("/desfazerBaixaEstoque")
   @CrossOrigin(origins = "*")
   public void desfazerBaixaEstoque(@RequestParam final Integer codProd, @RequestParam final Integer qtdade) {
-    desfazerBaixaEstoque.executar();
+    desfazerBaixaEstoque.executar(codProd, qtdade);
   }
 }
