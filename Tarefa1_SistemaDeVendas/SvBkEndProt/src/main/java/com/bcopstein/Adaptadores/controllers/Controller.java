@@ -10,13 +10,10 @@ import com.bcopstein.Aplicacao.casosDeUso.CadastraVendaUC;
 // import com.bcopstein.Aplicacao.casosDeUso.ConsultaProdutosUC;
 // import com.bcopstein.Aplicacao.casosDeUso.ConsultaVendasUC;
 import com.bcopstein.Aplicacao.casosDeUso.ConsultaVendaUC;
-import org.springframework.web.client.RestTemplate;
-
 import com.bcopstein.Negocio.entidades.Produto;
 import com.bcopstein.Negocio.entidades.Venda;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,10 +45,9 @@ public class Controller {
 	private EstoqueProxy proxy;
 
   public Controller(CadastraVendaUC cadastraVenda,
-      ConsultaVendaUC consultaVenda, EstoqueProxy proxy){//, ConsultaVendasUC consultaVendas, ConsultaProdutosUC consultaProdutos, CadastraProdutos cadastraProdutos) {
+      ConsultaVendaUC consultaVenda){//, ConsultaVendasUC consultaVendas, ConsultaProdutosUC consultaProdutos, CadastraProdutos cadastraProdutos) {
     this.cadastraVenda = cadastraVenda;
     this.consultaVenda = consultaVenda;
-    this.proxy = proxy;
     // this.consultaVendas = consultaVendas;
     // this.consultaProdutos = consultaProdutos;
     // this.cadastraProdutos = cadastraProdutos;
