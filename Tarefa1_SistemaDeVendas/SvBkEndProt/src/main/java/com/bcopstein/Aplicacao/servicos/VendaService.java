@@ -1,21 +1,23 @@
-package com.bcopstein.Negocio.servicos;
+package com.bcopstein.Aplicacao.servicos;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.time.LocalTime;
 import java.util.List;
 
-import com.bcopstein.Aplicacao.servicos.RestricaoVendaFactory;
 import com.bcopstein.Negocio.entidades.ItemCarrinho;
-import com.bcopstein.Negocio.entidades.ItemEstoque;
 import com.bcopstein.Negocio.entidades.Venda;
 import com.bcopstein.Negocio.repositorios.IVendaRepository;
+import com.bcopstein.Negocio.servicos.ICalculoFrete;
+import com.bcopstein.Negocio.servicos.ICalculoImposto;
+import com.bcopstein.Negocio.servicos.IRestricaoHorarioVenda;
+import com.bcopstein.Negocio.servicos.IVendaService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class VendaService {
+public class VendaService implements IVendaService{
 
   @Autowired
   private IVendaRepository vendaRepository;
@@ -24,15 +26,11 @@ public class VendaService {
   private ICalculoImposto calculoImposto;
 
   @Autowired
-  private EstoqueService servicoEstoque;
-
-  @Autowired
   private ICalculoFrete calculoFrete;
 
-  public VendaService(IVendaRepository vendaRepository, ICalculoImposto calculoImposto, EstoqueService servicoEstoque, ICalculoFrete calculoFrete) {
+  public VendaService(IVendaRepository vendaRepository, ICalculoImposto calculoImposto, ICalculoFrete calculoFrete) {
     this.vendaRepository = vendaRepository;
     this.calculoImposto = calculoImposto;
-    this.servicoEstoque = servicoEstoque;
     this.calculoFrete = calculoFrete;
   }
 
@@ -48,19 +46,20 @@ public class VendaService {
 
     for (ItemCarrinho produto : produtos) {
       // TODO: podevender() ele vai ser chamado la do estoque
-      boolean podeVender = servicoEstoque.podeVender(produto.getCodProduto(), produto.getQuantidade());
+      //boolean podeVender = servicoEstoque.podeVender(produto.getCodProduto(), produto.getQuantidade());
 
+      boolean podeVender = true;
       if (!podeVender) {
         return 2;
       }
     }
 
-    for (ItemCarrinho produto : produtos) {
-      // TODO: ItemEstoque ele vai ser chamado la do estoque
-      ItemEstoque itemEstoque = servicoEstoque.getProduto(produto.getCodProduto());
-      itemEstoque.setQuantidade(itemEstoque.getQuantidade() - produto.getQuantidade());
-      servicoEstoque.atualizaProduto(itemEstoque);
-    }
+    // for (ItemCarrinho produto : produtos) {
+    //   // TODO: ItemEstoque ele vai ser chamado la do estoque
+    //   ItemEstoque itemEstoque = servicoEstoque.getProduto(produto.getCodProduto());
+    //   itemEstoque.setQuantidade(itemEstoque.getQuantidade() - produto.getQuantidade());
+    //   servicoEstoque.atualizaProduto(itemEstoque);
+    // }
 
     this.vendaRepository.cadastra(novaVenda); // TODO: alterar aqui chama o endpoint para adicionar no notafiscalservico
 
@@ -72,7 +71,7 @@ public class VendaService {
     Integer imposto = 0;
     Double frete = 0.0;
 
-    for (final ItemCarrinho prod : itens) {
+    for (ItemCarrinho prod : itens) {
       if (prod != null) {
         subtotal += (int) prod.getPrecoProd() * prod.getQuantidade();
       } else {
@@ -110,7 +109,10 @@ public class VendaService {
     return resp;
   }
 
-  public List<Venda> todos() {
-    return vendaRepository.todos(); // TODO: mudar aqui para ser o historico
-  }
+  /* 
+    TODO: MOVER PARA O SERVICO DE NOTA FISCAL
+    public List<Venda> todos() {
+      return vendaRepository.todos();
+    }
+  */
 }

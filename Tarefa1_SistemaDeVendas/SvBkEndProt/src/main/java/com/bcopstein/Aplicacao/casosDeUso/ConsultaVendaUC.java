@@ -5,9 +5,9 @@ import java.util.List;
 
 import com.bcopstein.Negocio.servicos.ProdutoService;
 import com.bcopstein.Aplicacao.dtos.ParamSubtotal_DTO;
+import com.bcopstein.Aplicacao.servicos.VendaService;
 import com.bcopstein.Negocio.entidades.ItemCarrinho;
 import com.bcopstein.Negocio.entidades.Produto;
-import com.bcopstein.Negocio.servicos.VendaService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

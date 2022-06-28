@@ -7,8 +7,8 @@ import com.bcopstein.Negocio.entidades.ItemCarrinho;
 import com.bcopstein.Negocio.entidades.Produto;
 import com.bcopstein.Negocio.entidades.Venda;
 import com.bcopstein.Negocio.servicos.ProdutoService;
-import com.bcopstein.Negocio.servicos.VendaService;
 import com.bcopstein.Aplicacao.dtos.*;
+import com.bcopstein.Aplicacao.servicos.VendaService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -27,6 +27,7 @@ public class CadastraVendaUC {
   public Integer executar(ParamSubtotal_DTO dto) {
 
     List<ItemCarrinho> itens = new ArrayList<>(0);
+    // TODO: chamar o endpoint do estoque que retorna todos os produtos
     List<Produto> produtos = servicoProduto.todos();
 
     for (ItemCarrinho item : dto.getItens()) {

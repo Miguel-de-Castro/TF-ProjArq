@@ -20,10 +20,5 @@ public class ProdutoService {
 
     public List<Produto> todos(){
         return repo.todos();
-    }
-    
-    public void criar(){
-        repo.criarProdutos();
-    }
-    
+    }    
 }
