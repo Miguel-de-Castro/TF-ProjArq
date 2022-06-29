@@ -5,6 +5,7 @@ import java.net.URISyntaxException;
 import java.time.LocalTime;
 import java.util.List;
 
+import com.bcopstein.Adaptadores.proxy.EstoqueProxy;
 import com.bcopstein.Negocio.entidades.ItemCarrinho;
 import com.bcopstein.Negocio.entidades.Venda;
 import com.bcopstein.Negocio.repositorios.IVendaRepository;
@@ -28,6 +29,10 @@ public class VendaService implements IVendaService{
   @Autowired
   private ICalculoFrete calculoFrete;
 
+  //Não sei se é certo chamar ele desta forma
+  @Autowired
+  private EstoqueProxy proxy;
+
   public VendaService(IVendaRepository vendaRepository, ICalculoImposto calculoImposto, ICalculoFrete calculoFrete) {
     this.vendaRepository = vendaRepository;
     this.calculoImposto = calculoImposto;
@@ -46,20 +51,23 @@ public class VendaService implements IVendaService{
 
     for (ItemCarrinho produto : produtos) {
       // TODO: podevender() ele vai ser chamado la do estoque
-      //boolean podeVender = servicoEstoque.podeVender(produto.getCodProduto(), produto.getQuantidade());
+      boolean podeVender = proxy.podeVender(produto.getCodProduto(), produto.getQuantidade());
 
-      boolean podeVender = true;
+      // boolean podeVender = true;
       if (!podeVender) {
         return 2;
       }
     }
 
-    // for (ItemCarrinho produto : produtos) {
+    for (ItemCarrinho produto : produtos) {
     //   // TODO: ItemEstoque ele vai ser chamado la do estoque
     //   ItemEstoque itemEstoque = servicoEstoque.getProduto(produto.getCodProduto());
     //   itemEstoque.setQuantidade(itemEstoque.getQuantidade() - produto.getQuantidade());
     //   servicoEstoque.atualizaProduto(itemEstoque);
-    // }
+
+      //TODO: fazer o rollback se falhar
+      proxy.baixaEstoque(produto.getCodProduto(), produto.getQuantidade());
+    }
 
     this.vendaRepository.cadastra(novaVenda); // TODO: alterar aqui chama o endpoint para adicionar no notafiscalservico
 
