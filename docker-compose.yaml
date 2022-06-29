@@ -65,9 +65,9 @@ services:
       SPRING_RABBITMQ_HOST: rabbitmq
       SPRING_ZIPKIN_SENDER_TYPE: rabbit
 
-  prototipo:
-    image: prototipo
-    build: ./Tarefa1_SistemaDeVendas/SvBkEndProt
+  venda:
+    image: venda
+    build: ./Tarefa1_SistemaDeVendas/VendaServico
     mem_limit: 700m
     ports:
       - 8080:8080

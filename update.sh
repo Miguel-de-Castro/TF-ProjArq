@@ -27,8 +27,8 @@ cd ../..
 # cd ../..
 
 # PORT 8080
-cd Tarefa1_SistemaDeVendas/SvBkEndProt
+cd Tarefa1_SistemaDeVendas/VendaServico
 mvn clean package
-docker build --rm -t prototipo:latest .
+docker build --rm -t venda:latest .
 
 cd ../..
