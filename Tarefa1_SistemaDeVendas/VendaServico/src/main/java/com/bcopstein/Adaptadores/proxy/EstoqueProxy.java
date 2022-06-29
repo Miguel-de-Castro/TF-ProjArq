@@ -7,12 +7,12 @@ import com.bcopstein.Negocio.entidades.Produto;
 
 @FeignClient(name="estoque")
 public interface EstoqueProxy{
-    @GetMapping("/desfazerBaixaEstoque")
+    @GetMapping("/estoque/desfazerBaixaEstoque")
 	public void baixaEstoque();
 
-	@GetMapping("/desfazerBaixaEstoque")
+	@GetMapping("/estoque/desfazerBaixaEstoque")
 	public void desfazerBaixaEstoque();
 
-	@GetMapping("/produtos")
+	@GetMapping("/estoque/produtos")
 	public List<Produto> listaProdutos();
 }
