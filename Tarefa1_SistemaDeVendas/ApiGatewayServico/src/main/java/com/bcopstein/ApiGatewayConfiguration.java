@@ -13,7 +13,7 @@ public class ApiGatewayConfiguration {
 				.route(p -> p.path("/estoque/**")
 						.uri("lb://estoque"))
 				.route(p -> p.path("/vendas/**")
-						.uri("lb://vendas"))
+						.uri("lb://prototipo"))
 				.route(p -> p.path("/nota-fiscal/**")
 						.uri("lb://nota-fiscal"))
 				.build();
