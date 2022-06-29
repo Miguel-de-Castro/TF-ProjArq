@@ -63,7 +63,19 @@ public class Controller {
   @GetMapping("/autorizacao")
   @CrossOrigin(origins = "*")
   public boolean podeVender(@RequestParam final Integer codProd, @RequestParam final Integer qtdade) {
-    return true; // TODO: ver o proxy para usar o endpoint do estoque
+    return proxy.podeVender(codProd, qtdade);
+  }
+
+  @GetMapping("/baixaEstoque")
+  @CrossOrigin(origins = "*")
+  public void baixaEstoque(@RequestParam final Integer codProd, @RequestParam final Integer qtdade) {
+    proxy.baixaEstoque(codProd, qtdade);
+  }
+
+  @GetMapping("/desfazerBaixaEstoque")
+  @CrossOrigin(origins = "*")
+  public void desfazerBaixaEstoque(@RequestParam final Integer codProd, @RequestParam final Integer qtdade) {
+    proxy.desfazerBaixaEstoque(codProd, qtdade);
   }
 
   // TODO: manter endopoint pq é o que cadastra a venda e dentro dele é usado o servico do notafiscal
