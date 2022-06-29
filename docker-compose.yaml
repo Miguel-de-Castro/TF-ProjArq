@@ -47,9 +47,9 @@ services:
     networks:
       - currency-network
 
-  venda:
+  nota-servico:
     image: nota
-    build: ./Tarefa1_SistemaDeVendas/VendaServico
+    build: ./Tarefa1_SistemaDeVendas/NotaFiscalServico
     mem_limit: 700m
     ports:
       - "8100:8100"
