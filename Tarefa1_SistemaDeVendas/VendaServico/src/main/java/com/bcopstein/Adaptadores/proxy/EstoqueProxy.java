@@ -6,9 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bcopstein.Negocio.entidades.Produto;
+import com.bcopstein.Negocio.servicos.IEstoqueProxy;
 
 @FeignClient(name="estoque")
-public interface EstoqueProxy{
+public interface EstoqueProxy extends IEstoqueProxy{
     @GetMapping("/estoque/baixaEstoque")
 	public void baixaEstoque(@RequestParam final Integer codProd, @RequestParam final Integer qtdade);
 

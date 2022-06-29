@@ -5,12 +5,12 @@ import java.net.URISyntaxException;
 import java.time.LocalTime;
 import java.util.List;
 
-import com.bcopstein.Adaptadores.proxy.EstoqueProxy;
 import com.bcopstein.Negocio.entidades.ItemCarrinho;
 import com.bcopstein.Negocio.entidades.Venda;
 import com.bcopstein.Negocio.repositorios.IVendaRepository;
 import com.bcopstein.Negocio.servicos.ICalculoFrete;
 import com.bcopstein.Negocio.servicos.ICalculoImposto;
+import com.bcopstein.Negocio.servicos.IEstoqueProxy;
 import com.bcopstein.Negocio.servicos.IRestricaoHorarioVenda;
 import com.bcopstein.Negocio.servicos.IVendaService;
 
@@ -29,14 +29,14 @@ public class VendaService implements IVendaService{
   @Autowired
   private ICalculoFrete calculoFrete;
 
-  //Não sei se é certo chamar ele desta forma
   @Autowired
-  private EstoqueProxy proxy;
+  private IEstoqueProxy proxy;
 
-  public VendaService(IVendaRepository vendaRepository, ICalculoImposto calculoImposto, ICalculoFrete calculoFrete) {
+  public VendaService(IVendaRepository vendaRepository, ICalculoImposto calculoImposto, ICalculoFrete calculoFrete, IEstoqueProxy proxy) {
     this.vendaRepository = vendaRepository;
     this.calculoImposto = calculoImposto;
     this.calculoFrete = calculoFrete;
+    this.proxy = proxy;
   }
 
   public Integer cadastraVenda(Venda novaVenda) {
