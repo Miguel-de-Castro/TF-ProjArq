@@ -4,11 +4,9 @@ import java.util.List;
 
 import com.bcopstein.Aplicacao.casosDeUso.BaixaEstoqueUC;
 import com.bcopstein.Aplicacao.casosDeUso.CadastraProdutos;
-import com.bcopstein.Aplicacao.casosDeUso.ConsultaProdutoUC;
 import com.bcopstein.Aplicacao.casosDeUso.ConsultaProdutosUC;
 import com.bcopstein.Aplicacao.casosDeUso.DesfazerBaixaEstoqueUC;
 import com.bcopstein.Aplicacao.casosDeUso.VerificaEstoqueProdutoUC;
-import com.bcopstein.Negocio.entidades.ItemEstoque;
 import com.bcopstein.Negocio.entidades.Produto;
 
 import org.springframework.beans.factory.annotation.Autowired;

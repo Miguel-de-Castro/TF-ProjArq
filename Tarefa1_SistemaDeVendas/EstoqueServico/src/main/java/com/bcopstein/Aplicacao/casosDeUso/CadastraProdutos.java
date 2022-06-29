@@ -28,16 +28,18 @@ public class CadastraProdutos {
   }
 
   public boolean executar() {
-    servicoProduto.criar();
+    String msg = "1;Produto 1;45.0";
+    rabbitTemplate.convertAndSend("adiciona-estoque", "estoque.fila", msg);
+    msg = "2;Produto 2;5.0";
+    rabbitTemplate.convertAndSend("adiciona-estoque", "estoque.fila", msg);
+    msg = "3;Produto 3;50.0";
+    rabbitTemplate.convertAndSend("adiciona-estoque", "estoque.fila", msg);
+    
     List<Produto> list = servicoProduto.todos();
 
     for (Produto produto : list) {
       servicoEstoque.atualizaProduto(new ItemEstoque(produto.getCodigo(),produto,10));
-    }
-
-    String msg = "teste - aqui seria enviado os novos produtos para cadastrar";
-    rabbitTemplate.convertAndSend("adiciona-estoque", "estoque.fila", msg);
-    
+    }    
     return true;
   }
 }

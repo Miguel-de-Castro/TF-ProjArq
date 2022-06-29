@@ -11,9 +11,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ProdutoService {
-    private IProdutoRepository repo;
 
     @Autowired
+    private IProdutoRepository repo;
+
     public ProdutoService(IProdutoRepository repo) {
         this.repo = repo;
     }
@@ -22,8 +23,8 @@ public class ProdutoService {
         return repo.todos();
     }
     
-    public void criar(){
-        repo.criarProdutos();
+    public void criar(int codigo, String nome, double preco){
+        repo.criarProdutos(codigo, nome, preco);
     }
     
 }
