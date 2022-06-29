@@ -1,6 +1,6 @@
 class ServicoDeVendas {
   async autoriza(codigo, quantidade) {
-    let url = this.baseUrl + "/vendas/autorizacao";
+    let url = this.baseUrl + "/estoque/autorizacao";
     url += "?codProd=" + codigo + "&qtdade=" + quantidade;
 
     try {
@@ -92,7 +92,7 @@ class ServicoDeVendas {
   }
 
   async getProdutos() {
-    const url = this.baseUrl + "/vendas/produtos";
+    const url = this.baseUrl + "/estoque/produtos";
     const produtos = [];
 
     try {
