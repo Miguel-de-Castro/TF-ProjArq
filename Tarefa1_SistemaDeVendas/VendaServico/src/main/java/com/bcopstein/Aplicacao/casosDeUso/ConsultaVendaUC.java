@@ -30,8 +30,8 @@ public class ConsultaVendaUC {
     
 
     for (ItemCarrinho item : dto.getItens() ) {
-      ItemCarrinho novoProduto = produtos.stream().filter(p -> p.getCodProduto() == item.getCodProduto()).findFirst().orElse(null);
-      itens.add(new ItemCarrinho(novoProduto.getCodProduto(), novoProduto.getDescricao(), Double.valueOf(novoProduto.getPrecoProd()).intValue(),
+      ItemCarrinho novoProduto = produtos.stream().filter(p -> p.getCodigo() == item.getCodigo()).findFirst().orElse(null);
+      itens.add(new ItemCarrinho(novoProduto.getCodigo(), novoProduto.getDescricao(), Double.valueOf(novoProduto.getPreco()).intValue(),
           item.getQuantidade()));
     }
 

@@ -57,7 +57,7 @@ public class Controller {
     List<ItemCarrinho> itensProxy = proxy.listaProdutos();
     List<ItemCarrinho> itens = new ArrayList<>();
     for (ItemCarrinho i : itensProxy) {
-      itens.add(new ItemCarrinho(i.getCodProduto(), i.getDescricao(), i.getPrecoProd(), 0));
+      itens.add(new ItemCarrinho(i.getCodigo(), i.getDescricao(), i.getPreco(), 2));
     }
     return itens;
   }

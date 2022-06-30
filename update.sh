@@ -1,3 +1,6 @@
+# para matar images none
+docker system prune -f
+
 # PORT 8765
 cd Tarefa1_SistemaDeVendas/ApiGatewayServico
 mvn clean package

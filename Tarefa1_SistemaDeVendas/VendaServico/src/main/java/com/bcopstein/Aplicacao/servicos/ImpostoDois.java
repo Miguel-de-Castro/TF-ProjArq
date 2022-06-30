@@ -14,7 +14,7 @@ public class ImpostoDois implements ICalculoImposto {
     Integer valorTotalCompra = 0;
 
     for (ItemCarrinho produto : produtos) {
-      valorTotalCompra += produto.getPrecoProd() * produto.getQuantidade();
+      valorTotalCompra += produto.getPreco() * produto.getQuantidade();
     }
 
     if (valorTotalCompra > VALOR_PARA_IVA_MINIMO) {

@@ -14,7 +14,7 @@ public class ImpostoUm implements ICalculoImposto {
     Integer valorTotalCompra = 0;
 
     for (ItemCarrinho produto : produtos) {
-      valorTotalCompra += produto.getPrecoProd() * produto.getQuantidade();
+      valorTotalCompra += produto.getPreco() * produto.getQuantidade();
     }
 
     return valorTotalCompra * PORCENTAGEM_IMPOSTO / 100;

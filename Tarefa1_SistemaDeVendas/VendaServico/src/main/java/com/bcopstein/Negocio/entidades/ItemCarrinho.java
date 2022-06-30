@@ -29,12 +29,12 @@ public class ItemCarrinho {
 
   }
 
- public Integer getCodProduto() {
+ public Integer getCodigo() {
     return codigo;
   }
 
-  public void setCodProduto(Integer codProduto) {
-    this.codigo = codProduto;
+  public void setCodigo(Integer codigo) {
+    this.codigo = codigo;
   }
 
   public String getDescricao() {
@@ -45,12 +45,12 @@ public class ItemCarrinho {
     this.descricao = descricao;
   }
 
-  public Integer getPrecoProd() {
+  public Integer getPreco() {
     return preco;
   }
 
-  public void setPrecoProd(Integer precoProd) {
-    this.preco = precoProd;
+  public void setPrecoProd(Integer preco) {
+    this.preco = preco;
   }
 
   public int getQuantidade() {
@@ -65,7 +65,7 @@ public class ItemCarrinho {
 
   @Override
   public String toString() {
-    return "ItemCarrinho [codProduto=" + codigo + ", codigo=" + codCarrinho + ", precoProd=" + preco
+    return "ItemCarrinho [codigo=" + codigo + ", codigo=" + codCarrinho + ", preco=" + preco
         + ", quantidade=" + quantidade + "]";
   }
 }

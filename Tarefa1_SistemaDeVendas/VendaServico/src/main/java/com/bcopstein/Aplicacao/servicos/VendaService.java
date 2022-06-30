@@ -51,7 +51,7 @@ public class VendaService implements IVendaService{
 
     for (ItemCarrinho produto : produtos) {
       // TODO: podevender() ele vai ser chamado la do estoque
-      boolean podeVender = proxy.podeVender(produto.getCodProduto(), produto.getQuantidade());
+      boolean podeVender = proxy.podeVender(produto.getCodigo(), produto.getQuantidade());
 
       // boolean podeVender = true;
       if (!podeVender) {
@@ -61,12 +61,12 @@ public class VendaService implements IVendaService{
 
     for (ItemCarrinho produto : produtos) {
     //   // TODO: ItemEstoque ele vai ser chamado la do estoque
-    //   ItemEstoque itemEstoque = servicoEstoque.getProduto(produto.getCodProduto());
+    //   ItemEstoque itemEstoque = servicoEstoque.getProduto(produto.getCodigo());
     //   itemEstoque.setQuantidade(itemEstoque.getQuantidade() - produto.getQuantidade());
     //   servicoEstoque.atualizaProduto(itemEstoque);
 
       //TODO: fazer o rollback se falhar
-      proxy.baixaEstoque(produto.getCodProduto(), produto.getQuantidade());
+      proxy.baixaEstoque(produto.getCodigo(), produto.getQuantidade());
     }
 
     this.vendaRepository.cadastra(novaVenda); // TODO: alterar aqui chama o endpoint para adicionar no notafiscalservico
@@ -82,7 +82,7 @@ public class VendaService implements IVendaService{
 
     for (ItemCarrinho prod : itens) {
       if (prod != null) {
-        subtotal += (int) prod.getPrecoProd() * prod.getQuantidade();
+        subtotal += (int) prod.getPreco() * prod.getQuantidade();
       } else {
         throw new IllegalArgumentException("Codigo invalido");
       }

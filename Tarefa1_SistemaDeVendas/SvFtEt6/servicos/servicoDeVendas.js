@@ -40,7 +40,7 @@ class ServicoDeVendas {
     const lstItens = [];
 
     itens.forEach((item) => {
-      lstItens.push({ codigo: item.produto.codigo, codProduto: item.produto.codigo, precoProd: item.produto.preco, quantidade: item.qtdade });
+      lstItens.push({ codigo: item.produto.codigo, codProduto: item.produto.codigo, preco: item.produto.preco, quantidade: item.qtdade });
     });
 
     const param = { itens:lstItens, endereco:endereco }
@@ -68,7 +68,7 @@ class ServicoDeVendas {
     const lstItens = [];
 
     itens.forEach((item) => {
-      lstItens.push({ codigo: item.produto.codigo, codProduto: item.produto.codigo, precoProd: item.produto.preco, quantidade: item.qtdade });
+      lstItens.push({ codigo: item.produto.codigo, codProduto: item.produto.codigo, preco: item.produto.preco, quantidade: item.qtdade });
     });
 
     const param = { itens:lstItens, endereco:endereco }
