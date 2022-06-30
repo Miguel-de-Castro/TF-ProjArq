@@ -70,6 +70,7 @@ public class VendaService implements IVendaService{
     }
 
     this.vendaRepository.cadastra(novaVenda); // TODO: alterar aqui chama o endpoint para adicionar no notafiscalservico
+    //rabbitTemplate.convertAndSend("adiciona-nota-fiscal", "nota-fiscal.fila", msg);
 
     return 0;
   }

@@ -10,7 +10,7 @@ import com.bcopstein.Aplicacao.casosDeUso.CadastraVendaUC;
 // import com.bcopstein.Aplicacao.casosDeUso.ConsultaProdutosUC;
 // import com.bcopstein.Aplicacao.casosDeUso.ConsultaVendasUC;
 import com.bcopstein.Aplicacao.casosDeUso.ConsultaVendaUC;
-import com.bcopstein.Negocio.entidades.Produto;
+import com.bcopstein.Negocio.entidades.ItemCarrinho;
 import com.bcopstein.Negocio.entidades.Venda;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,19 +45,21 @@ public class Controller {
 	private EstoqueProxy proxy;
 
   public Controller(CadastraVendaUC cadastraVenda,
-      ConsultaVendaUC consultaVenda){//, ConsultaVendasUC consultaVendas, ConsultaProdutosUC consultaProdutos, CadastraProdutos cadastraProdutos) {
+      ConsultaVendaUC consultaVenda){
     this.cadastraVenda = cadastraVenda;
     this.consultaVenda = consultaVenda;
-    // this.consultaVendas = consultaVendas;
-    // this.consultaProdutos = consultaProdutos;
-    // this.cadastraProdutos = cadastraProdutos;
   }
 
   // TODO: acredito que o front chame o endpoint lá do estoque direto que contem os produtos
   @GetMapping("/produtos")
   @CrossOrigin(origins = "*")
-  public List<Produto> listaProdutos() {
-    return proxy.listaProdutos();
+  public List<ItemCarrinho> listaProdutos() {
+    List<ItemCarrinho> itensProxy = proxy.listaProdutos();
+    List<ItemCarrinho> itens = new ArrayList<>();
+    for (ItemCarrinho i : itensProxy) {
+      itens.add(new ItemCarrinho(i.getCodProduto(), i.getDescricao(), i.getPrecoProd(), 0));
+    }
+    return itens;
   }
 
   @GetMapping("/autorizacao")

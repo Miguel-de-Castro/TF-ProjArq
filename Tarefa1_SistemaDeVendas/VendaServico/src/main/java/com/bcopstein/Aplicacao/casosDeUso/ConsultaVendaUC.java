@@ -3,33 +3,35 @@ package com.bcopstein.Aplicacao.casosDeUso;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.bcopstein.Negocio.servicos.ProdutoService;
+import com.bcopstein.Negocio.servicos.IEstoqueProxy;
 import com.bcopstein.Aplicacao.dtos.ParamSubtotal_DTO;
 import com.bcopstein.Aplicacao.servicos.VendaService;
 import com.bcopstein.Negocio.entidades.ItemCarrinho;
-import com.bcopstein.Negocio.entidades.Produto;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ConsultaVendaUC {
-  private VendaService servicoVenda;
-  private ProdutoService servicoProduto;
 
   @Autowired
-  public ConsultaVendaUC(VendaService servicoVenda, ProdutoService servicoProduto) {
+  private VendaService servicoVenda;
+
+  @Autowired
+  private IEstoqueProxy proxy;
+
+  public ConsultaVendaUC(VendaService servicoVenda) {
     this.servicoVenda = servicoVenda;
-    this.servicoProduto = servicoProduto;
   }
 
   public Integer[] executar(ParamSubtotal_DTO dto) {
     List<ItemCarrinho> itens = new ArrayList<>(0);
-    List<Produto> produtos = servicoProduto.todos();
+    List<ItemCarrinho> produtos = proxy.listaProdutos();
+    
 
     for (ItemCarrinho item : dto.getItens() ) {
-      Produto novoProduto = produtos.stream().filter(p -> p.getCodigo() == item.getCodProduto()).findFirst().orElse(null);
-      itens.add(new ItemCarrinho(novoProduto.getCodigo(), Double.valueOf(novoProduto.getPreco()).intValue(),
+      ItemCarrinho novoProduto = produtos.stream().filter(p -> p.getCodProduto() == item.getCodProduto()).findFirst().orElse(null);
+      itens.add(new ItemCarrinho(novoProduto.getCodProduto(), novoProduto.getDescricao(), Double.valueOf(novoProduto.getPrecoProd()).intValue(),
           item.getQuantidade()));
     }
 

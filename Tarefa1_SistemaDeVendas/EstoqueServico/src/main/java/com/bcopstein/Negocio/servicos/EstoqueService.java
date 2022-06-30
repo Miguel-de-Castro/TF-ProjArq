@@ -9,9 +9,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class EstoqueService {
 
+  @Autowired
   private IEstoqueRepository estoqueRepository;
 
-  @Autowired
   public EstoqueService(IEstoqueRepository estoqueRepository) {
     this.estoqueRepository = estoqueRepository;
   }
