@@ -28,7 +28,6 @@ public class CadastraVendaUC {
   public Integer executar(ParamSubtotal_DTO dto) {
 
     List<ItemCarrinho> itens = new ArrayList<>(0);
-    // TODO: chamar o endpoint do estoque que retorna todos os produtos
     List<ItemCarrinho> produtos = proxy.listaProdutos();
 
     for (ItemCarrinho item : dto.getItens()) {

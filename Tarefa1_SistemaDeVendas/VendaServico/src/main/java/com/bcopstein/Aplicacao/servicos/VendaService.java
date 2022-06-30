@@ -52,18 +52,12 @@ public class VendaService implements IVendaService{
     for (ItemCarrinho produto : produtos) {
       // TODO: podevender() ele vai ser chamado la do estoque
       boolean podeVender = proxy.podeVender(produto.getCodigo(), produto.getQuantidade());
-
-      // boolean podeVender = true;
       if (!podeVender) {
         return 2;
       }
     }
 
     for (ItemCarrinho produto : produtos) {
-    //   // TODO: ItemEstoque ele vai ser chamado la do estoque
-    //   ItemEstoque itemEstoque = servicoEstoque.getProduto(produto.getCodigo());
-    //   itemEstoque.setQuantidade(itemEstoque.getQuantidade() - produto.getQuantidade());
-    //   servicoEstoque.atualizaProduto(itemEstoque);
 
       //TODO: fazer o rollback se falhar
       proxy.baixaEstoque(produto.getCodigo(), produto.getQuantidade());
