@@ -35,3 +35,5 @@ mvn clean package
 docker build --rm -t venda:latest .
 
 cd ../..
+
+# python -m http.server 3000
