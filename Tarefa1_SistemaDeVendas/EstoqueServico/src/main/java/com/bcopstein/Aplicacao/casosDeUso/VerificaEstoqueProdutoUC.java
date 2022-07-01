@@ -7,9 +7,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class VerificaEstoqueProdutoUC {
+  @Autowired
   private EstoqueService servicoEstoque;
 
-  @Autowired
   public VerificaEstoqueProdutoUC(EstoqueService servicoEstoque) {
     this.servicoEstoque = servicoEstoque;
   }

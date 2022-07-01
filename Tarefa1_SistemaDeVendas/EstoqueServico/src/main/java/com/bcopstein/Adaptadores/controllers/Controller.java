@@ -2,11 +2,11 @@ package com.bcopstein.Adaptadores.controllers;
 
 import java.util.List;
 
+import com.bcopstein.Aplicacao.casosDeUso.BaixaEstoqueUC;
 import com.bcopstein.Aplicacao.casosDeUso.CadastraProdutos;
-import com.bcopstein.Aplicacao.casosDeUso.ConsultaProdutoUC;
 import com.bcopstein.Aplicacao.casosDeUso.ConsultaProdutosUC;
+import com.bcopstein.Aplicacao.casosDeUso.DesfazerBaixaEstoqueUC;
 import com.bcopstein.Aplicacao.casosDeUso.VerificaEstoqueProdutoUC;
-import com.bcopstein.Negocio.entidades.ItemEstoque;
 import com.bcopstein.Negocio.entidades.Produto;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/estoque")
 public class Controller {
-
-  @Autowired
-  private ConsultaProdutoUC consultaProduto;
   
   @Autowired
   private VerificaEstoqueProdutoUC verificaEstoqueProduto;
@@ -32,25 +29,27 @@ public class Controller {
 
   @Autowired
   private CadastraProdutos cadastraProdutos;
+  
+  @Autowired
+  private BaixaEstoqueUC baixaEstoque;
+
+  @Autowired
+  private DesfazerBaixaEstoqueUC desfazerBaixaEstoque;
 
   public Controller(VerificaEstoqueProdutoUC verificaEstoqueProdutoUC, 
-        ConsultaProdutosUC consultaProdutos, CadastraProdutos cadastraProdutos, ConsultaProdutoUC consultaProdutoUC) {
+        ConsultaProdutosUC consultaProdutos, CadastraProdutos cadastraProdutos,
+        BaixaEstoqueUC baixaEstoque, DesfazerBaixaEstoqueUC desfazerBaixaEstoque) {
     this.verificaEstoqueProduto = verificaEstoqueProdutoUC;
     this.consultaProdutos = consultaProdutos;
     this.cadastraProdutos = cadastraProdutos;
-    this.consultaProduto = consultaProdutoUC;
+    this.baixaEstoque = baixaEstoque;
+    this.desfazerBaixaEstoque = desfazerBaixaEstoque;
   }
 
   @GetMapping("/produtos")
   @CrossOrigin(origins = "*")
   public List<Produto> listaProdutos() {
     return consultaProdutos.executar();
-  }
-
-  @GetMapping("/produto")
-  @CrossOrigin(origins = "*")
-  public ItemEstoque getProduto(@RequestParam final Integer codProd) {
-    return consultaProduto.executar(codProd);
   }
 
   @GetMapping("/autorizacao")
@@ -65,4 +64,16 @@ public class Controller {
     cadastraProdutos.executar();
   }
 
+  @PostMapping("/baixaEstoque")
+  @CrossOrigin(origins = "*")
+  public void baixaEstoque(@RequestParam final Integer codProd, @RequestParam final Integer qtdade) {
+    baixaEstoque.executar(codProd, qtdade);
+  }
+
+
+  @PostMapping("/desfazerBaixaEstoque")
+  @CrossOrigin(origins = "*")
+  public void desfazerBaixaEstoque(@RequestParam final Integer codProd, @RequestParam final Integer qtdade) {
+    desfazerBaixaEstoque.executar(codProd, qtdade);
+  }
 }

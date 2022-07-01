@@ -1,15 +1,11 @@
 package com.bcopstein.Adaptadores.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.bcopstein.Aplicacao.dtos.ParamSubtotal_DTO;
-import com.bcopstein.Aplicacao.casosDeUso.CadastraProdutos;
 import com.bcopstein.Aplicacao.casosDeUso.CadastraVendaUC;
-import com.bcopstein.Aplicacao.casosDeUso.ConsultaProdutosUC;
 import com.bcopstein.Aplicacao.casosDeUso.ConsultaVendaUC;
-import com.bcopstein.Aplicacao.casosDeUso.ConsultaVendasUC;
-import com.bcopstein.Aplicacao.casosDeUso.VerificaEstoqueProdutoUC;
-import com.bcopstein.Negocio.entidades.Produto;
 import com.bcopstein.Negocio.entidades.Venda;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,36 +14,34 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/venda")
+@RequestMapping("/vendas")
 public class Controller {
-  private CadastraVendaUC cadastraVenda;
-  private ConsultaVendasUC consultaVendas;
-
+  
   @Autowired
-  public Controller(CadastraVendaUC cadastraVenda, ConsultaVendasUC consultaVendas) {
+  private CadastraVendaUC cadastraVenda;
+  
+  @Autowired
+  private ConsultaVendaUC consultaVenda;
+
+  public Controller(CadastraVendaUC cadastraVenda,
+      ConsultaVendaUC consultaVenda){
     this.cadastraVenda = cadastraVenda;
-    this.consultaVendas = consultaVendas;
+    this.consultaVenda = consultaVenda;
   }
 
-  // verificar sobre o CLEAN
+  // TODO: manter endopoint pq é o que cadastra a venda e dentro dele é usado o servico do notafiscal
   @PostMapping("/confirmacao")
   @CrossOrigin(origins = "*")
   public Integer confirmaVenda(@RequestBody final ParamSubtotal_DTO dto) {
-    // chama verifica se pode chamando o autorizacao do estoque
-    int vendeu = cadastraVenda.executar(dto);
-    if(vendeu == 0){
-      // chama o endpoint de tirar do estoque
-    }
-    return vendeu;
+    return cadastraVenda.executar(dto);
   }
 
-  @GetMapping("/historico")
+  @PostMapping("/subtotal")
   @CrossOrigin(origins = "*")
-  public List<Venda> vendasEfetuadas() {
-    return consultaVendas.executar();
+  public Integer[] calculaSubtotal(@RequestBody final ParamSubtotal_DTO dto) {
+    return consultaVenda.executar(dto);
   }
 }

@@ -1,3 +1,6 @@
+# para matar images none
+docker system prune -f
+
 # PORT 8765
 cd Tarefa1_SistemaDeVendas/ApiGatewayServico
 mvn clean package
@@ -20,15 +23,18 @@ docker build --rm -t nameserver:latest .
 cd ../..
 
 # PORT 8100
-# cd Tarefa1_SistemaDeVendas/VendaServico
-# mvn clean package
-# docker build --rm -t venda:latest .
-
-# cd ../..
-
-# PORT 8080
-cd Tarefa1_SistemaDeVendas/SvBkEndProt
+cd Tarefa1_SistemaDeVendas/NotaFiscalServico
 mvn clean package
-docker build --rm -t prototipo:latest .
+docker build --rm -t nota-fiscal:latest .
 
 cd ../..
+
+# PORT 8080
+cd Tarefa1_SistemaDeVendas/VendaServico
+mvn clean package
+docker build --rm -t venda:latest .
+
+cd ../..
+
+docker compose up
+# python -m http.server 3000

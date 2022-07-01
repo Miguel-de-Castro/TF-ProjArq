@@ -10,16 +10,18 @@ import javax.persistence.Id;
 public class ItemCarrinho {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private Integer codigo;
+  private Integer codCarrinho;
 
   @Column(name = "cod_produto")
-  private Integer codProduto;
-  private Integer precoProd;
+  private Integer codigo;
+  private Integer preco;
+  private String descricao;
   private int quantidade;
 
-  public ItemCarrinho(Integer codProduto, Integer precoProd, int quantidade) {
-    this.codProduto = codProduto;
-    this.precoProd = precoProd;
+  public ItemCarrinho(Integer codigo, String descricao, Integer preco, int quantidade) {
+    this.codigo = codigo;
+    this.descricao = descricao;
+    this.preco = preco;
     this.quantidade = quantidade;
   }
 
@@ -27,20 +29,28 @@ public class ItemCarrinho {
 
   }
 
- public Integer getCodProduto() {
-    return codProduto;
+ public Integer getCodigo() {
+    return codigo;
   }
 
-  public void setCodProduto(Integer codProduto) {
-    this.codProduto = codProduto;
+  public void setCodigo(Integer codigo) {
+    this.codigo = codigo;
   }
 
-  public Integer getPrecoProd() {
-    return precoProd;
+  public String getDescricao() {
+    return descricao;
   }
 
-  public void setPrecoProd(Integer precoProd) {
-    this.precoProd = precoProd;
+  public void setDescricao(String descricao) {
+    this.descricao = descricao;
+  }
+
+  public Integer getPreco() {
+    return preco;
+  }
+
+  public void setPrecoProd(Integer preco) {
+    this.preco = preco;
   }
 
   public int getQuantidade() {
@@ -55,7 +65,7 @@ public class ItemCarrinho {
 
   @Override
   public String toString() {
-    return "ItemCarrinho [codProduto=" + codProduto + ", codigo=" + codigo + ", precoProd=" + precoProd
+    return "ItemCarrinho [codigo=" + codigo + ", codigo=" + codCarrinho + ", preco=" + preco
         + ", quantidade=" + quantidade + "]";
   }
 }

@@ -10,14 +10,12 @@ public class ApiGatewayConfiguration {
 	@Bean
 	public RouteLocator gatewayRouter(RouteLocatorBuilder builder) {
 		return builder.routes()
-				.route(p -> p.path("/currency-exchange/**")
-						.uri("lb://currency-exchange"))
-				.route(p -> p.path("/currency-conversion/**")
-						.uri("lb://currency-conversion"))
-				.route(p -> p.path("/currency-conversion-feign/**")
-						.uri("lb://currency-conversion"))
-				.route(p -> p.path("/currency-conversion-message/**")
-						.uri("lb://currency-conversion"))
+				.route(p -> p.path("/estoque/**")
+						.uri("lb://estoque"))
+				.route(p -> p.path("/vendas/**")
+						.uri("lb://venda"))
+				.route(p -> p.path("/nota-fiscal/**")
+						.uri("lb://nota-fiscal"))
 				.build();
 	}
 }

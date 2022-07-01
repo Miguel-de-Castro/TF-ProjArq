@@ -8,10 +8,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class EstoqueRepository implements IEstoqueRepository {
-
+  @Autowired
   private IEstoqueRepositoryCrud estoqueRepository;
 
-  @Autowired
   public EstoqueRepository(IEstoqueRepositoryCrud estoqueRepository) {
     this.estoqueRepository = estoqueRepository;
   }
