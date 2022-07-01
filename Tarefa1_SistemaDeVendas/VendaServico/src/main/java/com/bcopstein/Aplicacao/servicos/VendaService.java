@@ -13,15 +13,13 @@ import com.bcopstein.Negocio.servicos.ICalculoImposto;
 import com.bcopstein.Negocio.servicos.IEstoqueProxy;
 import com.bcopstein.Negocio.servicos.IRestricaoHorarioVenda;
 import com.bcopstein.Negocio.servicos.IVendaService;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class VendaService implements IVendaService{
-
-  @Autowired
-  private IVendaRepository vendaRepository;
 
   @Autowired
   private ICalculoImposto calculoImposto;
@@ -32,10 +30,13 @@ public class VendaService implements IVendaService{
   @Autowired
   private IEstoqueProxy proxy;
 
-  public VendaService(IVendaRepository vendaRepository, ICalculoImposto calculoImposto, ICalculoFrete calculoFrete, IEstoqueProxy proxy) {
-    this.vendaRepository = vendaRepository;
+  @Autowired
+  private RabbitTemplate rabbitTemplate;
+
+  public VendaService(ICalculoImposto calculoImposto, ICalculoFrete calculoFrete, IEstoqueProxy proxy, RabbitTemplate rabbitTemplate) {
     this.calculoImposto = calculoImposto;
     this.calculoFrete = calculoFrete;
+    this.rabbitTemplate = rabbitTemplate;
     this.proxy = proxy;
   }
 
@@ -63,8 +64,11 @@ public class VendaService implements IVendaService{
       proxy.baixaEstoque(produto.getCodigo(), produto.getQuantidade());
     }
 
-    this.vendaRepository.cadastra(novaVenda); // TODO: alterar aqui chama o endpoint para adicionar no notafiscalservico
-    //rabbitTemplate.convertAndSend("adiciona-nota-fiscal", "nota-fiscal.fila", msg);
+    String msg = novaVenda.getCodVenda() + ";"
+    + novaVenda.getSubtotal() + ";"
+    + novaVenda.getImpostos() + ";"
+    + novaVenda.getTotal();
+    rabbitTemplate.convertAndSend("adiciona-nota-fiscal", "nota-fiscal.fila", msg);
 
     return 0;
   }

@@ -11,13 +11,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.bcopstein.Adaptadores.Receiver;
+import com.bcopstein.Adaptadores.receiver.Receiver;
 
 
 @SpringBootApplication
 public class NotaFiscalApplication {
-	static final String topicExchangeName = "spring-boot-exchange";
-	static final String queueName = "spring-boot";
+	static final String topicExchangeName = "adiciona-nota-fiscal";
+	static final String queueName = "nota-fiscal";
   
 	@Bean
 	Queue queue() {
@@ -32,7 +32,7 @@ public class NotaFiscalApplication {
 	@Bean
 	// Define que tipo de mensagens este app vai escutar
 	Binding binding(Queue queue, TopicExchange exchange) {
-	  return BindingBuilder.bind(queue).to(exchange).with("history.#");
+	  return BindingBuilder.bind(queue).to(exchange).with("nota-fiscal.#");
 	}
   
 	@Bean

@@ -18,7 +18,7 @@ public class CadastraNotaFiscalUC {
     this.nfService = nfService;
   }
 
-  public Integer executar(NotaFiscalDTO dto) {
+  public boolean executar(NotaFiscalDTO dto) {
     return nfService.cadastraNF(dto);
   }
 }

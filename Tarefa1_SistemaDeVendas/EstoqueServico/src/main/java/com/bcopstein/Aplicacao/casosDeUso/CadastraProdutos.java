@@ -22,8 +22,9 @@ public class CadastraProdutos {
   @Autowired
   private RabbitTemplate rabbitTemplate;
 
-  public CadastraProdutos(ProdutoService servicoProduto, EstoqueService servicoEstoque) {
+  public CadastraProdutos(ProdutoService servicoProduto, EstoqueService servicoEstoque, RabbitTemplate rabbitTemplate) {
     this.servicoProduto = servicoProduto;
+    this.rabbitTemplate = rabbitTemplate;
     this.servicoEstoque = servicoEstoque;
   }
 

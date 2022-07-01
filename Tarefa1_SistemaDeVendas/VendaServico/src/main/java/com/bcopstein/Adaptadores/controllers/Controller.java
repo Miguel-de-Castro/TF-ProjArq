@@ -44,11 +44,4 @@ public class Controller {
   public Integer[] calculaSubtotal(@RequestBody final ParamSubtotal_DTO dto) {
     return consultaVenda.executar(dto);
   }
-
-  // TODO: vai chamar pelo proxy o endpoint com as vendas registradas na notafiscal
-  @GetMapping("/historico")
-  @CrossOrigin(origins = "*")
-  public List<Venda> vendasEfetuadas() {
-    return new ArrayList<>();
-  }
 }

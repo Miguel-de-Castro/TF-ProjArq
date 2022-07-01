@@ -17,12 +17,11 @@ public class NotaFiscalService {
     this.nfRepository = nfRepository;
   }
 
-  public Integer cadastraNF(NotaFiscalDTO nf) {
-    
+  public boolean cadastraNF(NotaFiscalDTO nf) {
     nfRepository.cadastra(nf);
-
-    return 0;
+    return true;
   }
+
   public List<NotaFiscalDTO> todos() {
     return nfRepository.todos();
   }

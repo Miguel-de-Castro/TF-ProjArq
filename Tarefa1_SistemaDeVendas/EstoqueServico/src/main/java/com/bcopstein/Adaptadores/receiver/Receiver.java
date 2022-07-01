@@ -15,6 +15,6 @@ public class Receiver {
     String[] messageVet = message.split(";");
     servicoProduto.criar(Integer.parseInt(messageVet[0]), messageVet[1], Double.parseDouble(messageVet[2]));
     //HistoryDTO hDto = HistoryDTO.fromJSon(message);
-    System.out.println(message);
+    System.out.println("Produto ->" + message);
   }
 }
