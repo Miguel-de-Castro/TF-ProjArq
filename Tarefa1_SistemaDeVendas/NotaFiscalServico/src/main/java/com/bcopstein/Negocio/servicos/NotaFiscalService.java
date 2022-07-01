@@ -17,7 +17,7 @@ public class NotaFiscalService {
     this.nfRepository = nfRepository;
   }
 
-  public boolean cadastraNF(NotaFiscalDTO nf) {
+  public boolean cadastraNotaFiscal(NotaFiscalDTO nf) {
     nfRepository.cadastra(nf);
     return true;
   }

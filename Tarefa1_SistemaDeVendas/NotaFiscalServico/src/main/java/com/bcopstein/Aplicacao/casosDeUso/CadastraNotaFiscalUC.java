@@ -19,6 +19,6 @@ public class CadastraNotaFiscalUC {
   }
 
   public boolean executar(NotaFiscalDTO dto) {
-    return nfService.cadastraNF(dto);
+    return nfService.cadastraNotaFiscal(dto);
   }
 }
