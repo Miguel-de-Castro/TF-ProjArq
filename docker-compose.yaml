@@ -47,8 +47,8 @@ services:
     networks:
       - currency-network
 
-  nota-servico:
-    image: nota
+  nota-fiscal:
+    image: nota-fiscal
     build: ./Tarefa1_SistemaDeVendas/NotaFiscalServico
     mem_limit: 700m
     ports:

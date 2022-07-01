@@ -131,7 +131,7 @@ function bindClear(btn) {
 
 // Inicialização
 async function init() {
-  servico = new ServicoDeVendas("https://8765-migueldecastr-tfprojarq-8qi07cfb0if.ws-us47.gitpod.io");
+  servico = new ServicoDeVendas("https://8765-migueldecastr-tfprojarq-8qi07cfb0if.ws-us51.gitpod.io");
 
   carrinho = new CarrinhoView(new Carrinho(), carrinhoRoot);
   produtos = new ProdutoListView(servico, produtosRoot);
