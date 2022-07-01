@@ -11,11 +11,14 @@ public class Receiver {
 
   @Autowired
   private NotaFiscalService notaFiscalService;
-
+  
+  public static int count = 0;
+  
   public void receiveMessage(String message) {
     String[] messageVet = message.split(";");
-    NotaFiscalDTO dto = new NotaFiscalDTO(Integer.parseInt(messageVet[0]),Integer.parseInt(messageVet[1]),Integer.parseInt(messageVet[2]),Integer.parseInt(messageVet[3]));
+    NotaFiscalDTO dto = new NotaFiscalDTO(count,Integer.parseInt(messageVet[0]),Integer.parseInt(messageVet[1]),Integer.parseInt(messageVet[2]));
+    count++;
     notaFiscalService.cadastraNotaFiscal(dto);
-    System.out.println("Nota Fiscal ->" + message);
+    System.out.println("Nota Fiscal -> " + message);
   }
 }

@@ -64,8 +64,7 @@ public class VendaService implements IVendaService{
       proxy.baixaEstoque(produto.getCodigo(), produto.getQuantidade());
     }
 
-    String msg = novaVenda.getCodVenda() + ";"
-    + novaVenda.getSubtotal() + ";"
+    String msg = novaVenda.getSubtotal() + ";"
     + novaVenda.getImpostos() + ";"
     + novaVenda.getTotal();
     rabbitTemplate.convertAndSend("adiciona-nota-fiscal", "notafiscal.fila", msg);
@@ -115,11 +114,4 @@ public class VendaService implements IVendaService{
 
     return resp;
   }
-
-  /* 
-    TODO: MOVER PARA O SERVICO DE NOTA FISCAL
-    public List<Venda> todos() {
-      return vendaRepository.todos();
-    }
-  */
 }
