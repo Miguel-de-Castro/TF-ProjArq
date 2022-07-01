@@ -10,9 +10,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class NotaFiscalRepository implements INotaFiscalRepository {
-    INotaFiscalCRUD nfCRUD;
-
     @Autowired
+    private INotaFiscalCRUD nfCRUD;
+
     public NotaFiscalRepository(INotaFiscalCRUD nfCRUD) {
         this.nfCRUD = nfCRUD;
     }
@@ -23,8 +23,8 @@ public class NotaFiscalRepository implements INotaFiscalRepository {
     }
 
     @Override
-    public boolean cadastra(NotaFiscalDTO nf) {
-        nfCRUD.save(nf);
+    public boolean cadastra(NotaFiscalDTO notaFiscal) {
+        nfCRUD.save(notaFiscal);
         return true;
     }
 

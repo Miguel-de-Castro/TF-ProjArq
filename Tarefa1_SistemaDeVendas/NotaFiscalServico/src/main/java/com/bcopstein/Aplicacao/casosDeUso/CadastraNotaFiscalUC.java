@@ -11,9 +11,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CadastraNotaFiscalUC {
-  private NotaFiscalService nfService;
 
   @Autowired
+  private NotaFiscalService nfService;
+
   public CadastraNotaFiscalUC(NotaFiscalService nfService) {
     this.nfService = nfService;
   }

@@ -10,9 +10,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class NotaFiscalService {
+  @Autowired
   private INotaFiscalRepository nfRepository;
 
-  @Autowired
   public NotaFiscalService(INotaFiscalRepository nfRepository) {
     this.nfRepository = nfRepository;
   }

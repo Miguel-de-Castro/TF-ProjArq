@@ -10,11 +10,13 @@ import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import com.bcopstein.Adaptadores.receiver.Receiver;
 
 
 @SpringBootApplication
+@EnableJpaRepositories(basePackages = {"com.bcopstein"})
 public class NotaFiscalApplication {
 	static final String topicExchangeName = "adiciona-nota-fiscal";
 	static final String queueName = "nota-fiscal";

@@ -11,6 +11,7 @@ import com.bcopstein.Aplicacao.dtos.NotaFiscalDTO;
 import com.bcopstein.Aplicacao.casosDeUso.*;
 
 import java.util.*;
+
 @RestController
 @RequestMapping("/nota-fiscal")
 public class Controller {
@@ -27,7 +28,7 @@ public class Controller {
     this.consultaNotasFiscaisUC = consultaNotasFiscaisUC;
   }
 
-	@PostMapping("/criarProdutos")
+	@PostMapping("/criarNotaFiscal")
   	@CrossOrigin(origins = "*")
   	public boolean criarProdutos(@RequestBody final NotaFiscalDTO dto) {
 		return cadastraNotaFiscalUC.executar(dto);
