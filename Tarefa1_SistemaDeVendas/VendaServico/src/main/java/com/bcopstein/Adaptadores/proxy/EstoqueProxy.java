@@ -3,6 +3,7 @@ package com.bcopstein.Adaptadores.proxy;
 import java.util.List;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bcopstein.Negocio.entidades.ItemCarrinho;
@@ -10,10 +11,10 @@ import com.bcopstein.Negocio.servicos.IEstoqueProxy;
 
 @FeignClient(name="estoque")
 public interface EstoqueProxy extends IEstoqueProxy{
-    @GetMapping("/estoque/baixaEstoque")
+    @PostMapping("/estoque/baixaEstoque")
 	public void baixaEstoque(@RequestParam final Integer codProd, @RequestParam final Integer qtdade);
 
-	@GetMapping("/estoque/desfazerBaixaEstoque")
+	@PostMapping("/estoque/desfazerBaixaEstoque")
 	public void desfazerBaixaEstoque(@RequestParam final Integer codProd, @RequestParam final Integer qtdade);
 
 	@GetMapping("/estoque/produtos")

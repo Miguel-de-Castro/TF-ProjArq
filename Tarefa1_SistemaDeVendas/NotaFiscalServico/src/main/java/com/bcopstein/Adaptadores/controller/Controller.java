@@ -22,17 +22,10 @@ public class Controller {
 	@Autowired
 	private ConsultaNotasFiscaisUC consultaNotasFiscaisUC;
 
-	public Controller(CadastraNotaFiscalUC cadastraNotaFiscalUC,
-	ConsultaNotasFiscaisUC consultaNotasFiscaisUC){
-    this.cadastraNotaFiscalUC = cadastraNotaFiscalUC;
-    this.consultaNotasFiscaisUC = consultaNotasFiscaisUC;
-  }
-
-	@PostMapping("/criarNotaFiscal")
-  	@CrossOrigin(origins = "*")
-  	public boolean criarProdutos(@RequestBody final NotaFiscalDTO dto) {
-		return cadastraNotaFiscalUC.executar(dto);
-  	}
+	public Controller(CadastraNotaFiscalUC cadastraNotaFiscalUC, ConsultaNotasFiscaisUC consultaNotasFiscaisUC){
+	    this.cadastraNotaFiscalUC = cadastraNotaFiscalUC;
+	    this.consultaNotasFiscaisUC = consultaNotasFiscaisUC;
+	}
 
 	@GetMapping("/historico")
 	@CrossOrigin(origins = "*")

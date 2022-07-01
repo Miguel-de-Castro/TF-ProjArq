@@ -19,7 +19,7 @@ import com.bcopstein.Adaptadores.receiver.Receiver;
 @EnableJpaRepositories(basePackages = {"com.bcopstein"})
 public class NotaFiscalApplication {
 	static final String topicExchangeName = "adiciona-nota-fiscal";
-	static final String queueName = "nota-fiscal";
+	static final String queueName = "notafiscal";
   
 	@Bean
 	Queue queue() {
@@ -34,7 +34,7 @@ public class NotaFiscalApplication {
 	@Bean
 	// Define que tipo de mensagens este app vai escutar
 	Binding binding(Queue queue, TopicExchange exchange) {
-	  return BindingBuilder.bind(queue).to(exchange).with("nota-fiscal.#");
+	  return BindingBuilder.bind(queue).to(exchange).with("notafiscal.#");
 	}
   
 	@Bean

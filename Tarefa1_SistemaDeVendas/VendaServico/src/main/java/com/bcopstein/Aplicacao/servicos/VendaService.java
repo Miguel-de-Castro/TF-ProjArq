@@ -68,7 +68,7 @@ public class VendaService implements IVendaService{
     + novaVenda.getSubtotal() + ";"
     + novaVenda.getImpostos() + ";"
     + novaVenda.getTotal();
-    rabbitTemplate.convertAndSend("adiciona-nota-fiscal", "nota-fiscal.fila", msg);
+    rabbitTemplate.convertAndSend("adiciona-nota-fiscal", "notafiscal.fila", msg);
 
     return 0;
   }

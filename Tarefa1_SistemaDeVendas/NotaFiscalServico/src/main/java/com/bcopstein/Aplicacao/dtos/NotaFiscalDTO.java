@@ -1,16 +1,19 @@
 package com.bcopstein.Aplicacao.dtos;
 
 import com.google.gson.Gson;
-
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Column;
 // this code use Gson: https://github.com/google/gson/blob/master/UserGuide.md
 
+@Entity(name = "nota_fiscal")
 public class NotaFiscalDTO {
+    @Id
+    @Column(name = "cod_nota")
     private Integer codVenda;
     private Integer subtotal;
     private Integer impostos;
     private Integer total;
-    //botar essa lisatagem??
-    //private List<ItemCarrinho> itensCarrinho;
     
     public NotaFiscalDTO(Integer codVenda,Integer subtotal,Integer impostos,Integer total) {
         this.codVenda = codVenda;
