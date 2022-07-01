@@ -19,6 +19,12 @@ public class Controller {
 	@Autowired
 	private ConsultaNotasFiscaisUC consultaNotasFiscaisUC;
 
+	public Controller(CadastraNotaFiscalUC cadastraNotaFiscalUC,
+	ConsultaNotasFiscaisUC consultaNotasFiscaisUC){
+    this.cadastraNotaFiscalUC = cadastraNotaFiscalUC;
+    this.consultaNotasFiscaisUC = consultaNotasFiscaisUC;
+  }
+
 	@PostMapping("/criarProdutos")
   	@CrossOrigin(origins = "*")
   	public boolean criarProdutos(@RequestBody final NotaFiscalDTO dto) {
