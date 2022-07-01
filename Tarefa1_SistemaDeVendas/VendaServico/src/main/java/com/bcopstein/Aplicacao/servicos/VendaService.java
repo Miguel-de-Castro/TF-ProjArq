@@ -59,8 +59,6 @@ public class VendaService implements IVendaService{
     }
 
     for (ItemCarrinho produto : produtos) {
-
-      //TODO: fazer o rollback se falhar
       proxy.baixaEstoque(produto.getCodigo(), produto.getQuantidade());
     }
 
